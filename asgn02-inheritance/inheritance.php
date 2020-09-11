@@ -27,10 +27,10 @@ var	$made_of_wood = true;
 	}
 }
 
-$pine = new Tree;
+$piney = new Tree;
 
 
-echo $pine->r_u_wood() . "</br>";
-echo $pine->describe_life();
+echo $piney->r_u_wood() . "</br>";
+echo $piney->describe_life();
 
 ?>
