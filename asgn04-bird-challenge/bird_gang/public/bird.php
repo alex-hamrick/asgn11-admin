@@ -1,4 +1,6 @@
 <?php require_once('../private/initialize.php'); ?>
+<?php require_once('../private/classes/parsecsv.class.php'); ?>
+<?php require_once('../private/classes/bird.class.php'); ?>
 
 <?php $page_title = 'Inventory'; ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>

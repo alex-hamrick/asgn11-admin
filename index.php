@@ -16,6 +16,8 @@
 <h2>Assignments</h2>
 <p>
   <a href="asgn03-static">asgn03-static</a> <br>
+	<a href="asgn04-bird-challenge/">asgn04-bird-challenge</a> <br>
+<footer>
 <footer>
 <?php
 echo date('d M Y');
