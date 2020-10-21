@@ -17,6 +17,7 @@
 <p>
   <a href="asgn03-static">asgn03-static</a> <br>
 	<a href="asgn04-bird-challenge/">asgn04-bird-challenge</a> <br>
+	<a href="asgn06-fetchall">asgn06</a> <br>
 <footer>
 <footer>
 <?php
