@@ -1,5 +1,5 @@
 <?php require_once('../private/initialize.php'); ?>
-
+<?php require_once('../private/classes/bird.class.php'); ?>
 <?php
 
   // Get requested ID
@@ -10,13 +10,13 @@
     redirect_to('bird.php');
   }
 
-  // Find bicycle using ID
+  // Find bird using ID
 
   $bird = Bird::find_by_id($id);
 
 ?>
 
-<?php $page_title = 'Detail: ' . $bird->name(); ?>
+<?php $page_title = 'Detail: ' . $bird->common_name; ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="main">
