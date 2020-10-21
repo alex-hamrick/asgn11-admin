@@ -52,7 +52,8 @@
     }
     return $object;
   }
-	 
+	 	
+	 	public $id;
     public $common_name;
     public $habitat;
     public $food;
@@ -69,6 +70,7 @@
     ];
 
     public function __construct($args=[]) {
+				$this->id = $args['id'] ?? '';
         $this->common_name = $args['common_name'] ?? '';
         $this->habitat = $args['habitat'] ?? '';
         $this->food = $args['food'] ?? '';
