@@ -1,36 +1,31 @@
 <?php
 
  class Bird {
-	 
- static protected $database;
 
-  static public function set_database($database) {
-    self::$database = $database;
-  }
+    // -- Start of Active Record Code -- //
+    
+    static protected $database;
 
-  static public function find_by_sql($sql) {
-    $result = self::$database->query($sql);
-    if(!$result) {
-      exit("Database query failed.");
+    static public function set_database($database) {
+        self::$database = $database;
     }
 
-    // results into objects
-    $object_array = [];
-    while($record = $result->fetch(PDO::FETCH_ASSOC)) {
-      $object_array[] = self::instantiate($record);
+    static public function find_by_sql($sql) {
+        $result = self::$database->query($sql);
+        if(!$result) {
+            exit("<p>Database query failed</p>");
+        }
+
+        // Turn results into objects
+        $object_array = [];
+        while ($record = $result->fetch(PDO::FETCH_ASSOC)) {
+            $object_array[] = self::instantiate($record);
+          }
+        //  $result->free();
+        return $object_array;
     }
-
-//    $result->free();
-
-    return $object_array;
-  }
-
-  static public function find_all() {
-    $sql = "SELECT * FROM birds";
-    return self::find_by_sql($sql);
-  }
-
- static public function find_by_id($id) {
+    
+    static public function find_by_id($id) {
         $sql = "SELECT * FROM birds ";
         $sql .= "WHERE id=" . self::$database->quote($id);
         $object_array = self::find_by_sql($sql);
@@ -40,29 +35,35 @@
             return false;
         }
     }
-
-  static protected function instantiate($record) {
-    $object = new self;
-    // Could manually assign values to properties
-    // but automatically assignment is easier and re-usable
-    foreach($record as $property => $value) {
-      if(property_exists($object, $property)) {
-        $object->$property = $value;
-      }
+    static public function find_all() {
+        $sql = "SELECT * FROM birds";
+        return self::find_by_sql($sql);
     }
-    return $object;
-  }
-	 	
-	 	public $id;
+
+    static public function instantiate($record) {
+        $object = new self;
+        foreach($record as $property => $value) {
+            if(property_exists($object, $property)) {
+                $object->$property = $value;
+            }
+        }
+        return $object;
+    }
+
+
+
+    // -- End of Active Record Code -- //
+
+    public $id;
     public $common_name;
     public $habitat;
     public $food;
     public $nest_palcement;
     public $behavior;
     public $backyard_tips;
-    protected $conservation_id;
+    protected $conservation_id=1;
 
-    protected const CONSERVATION_OPTIONS = [ 
+    public const CONSERVATION_OPTIONS = [ 
         1 => "Low concern",
         2 => "Medium concern",
         3 => "High concern",
@@ -70,7 +71,6 @@
     ];
 
     public function __construct($args=[]) {
-				$this->id = $args['id'] ?? '';
         $this->common_name = $args['common_name'] ?? '';
         $this->habitat = $args['habitat'] ?? '';
         $this->food = $args['food'] ?? '';
