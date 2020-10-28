@@ -9,14 +9,14 @@
  */
 
 // Development - Local
-define("DB_SERVER", "localhost");
-define("DB_USER", "web250user");
-define("DB_PASS", "8N=YwFDn4]");
-define("DB_NAME", "wnc_birds");
+//define("DB_SERVER", "localhost");
+//define("DB_USER", "web250user");
+//define("DB_PASS", "8N=YwFDn4]");
+//define("DB_NAME", "wnc_birds");
 
 
 // Production - SiteGround
-// define("DB_SERVER", "localhost");
-// define("DB_USER", "");
-// define("DB_PASS", "");
-// define("DB_NAME", "");
+define("DB_SERVER", "localhost");
+define("DB_USER", "alexh189_bird");
+define("DB_PASS", "birds");
+define("DB_NAME", "alexh189_bird");

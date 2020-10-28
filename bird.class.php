@@ -81,6 +81,25 @@
 
     }
 
+	  public function create() {
+			$sql = "INSERT INTO birds (common_name, habitat, food, conservation_id, backyard_tips)";
+			$sql .= " VALUES (";
+			$sql .= "'" . $this->common_name . "', ";
+			$sql .= "'" . $this->habitat . "', ";
+			$sql .= "'" . $this->food . "', ";
+			$sql .= "'" . $this->conservation_id . "', ";
+			$sql .= "'" . $this->backyard_tips . "'";
+			$sql .= ")";
+			
+			$result = self::$database->exec($sql);
+			
+			if( $result ) {
+				$this->id = self::$database->lastInsertID();
+			} else echo "Insert query did not run";
+			
+			return $result;
+
+		}
     public function conservation() {
         // echo self::CONSERVATION_OPTIONS[$this->conservation_id];
         if( $this->conservation_id > 0 ) {
