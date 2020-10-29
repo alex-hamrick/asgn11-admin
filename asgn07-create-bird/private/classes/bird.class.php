@@ -82,8 +82,9 @@
     }
 
 	  public function create() {
-			$sql = self::$database->prepare("INSERT INTO birds (common_name, habitat, food, conservation_id, backyard_tips) VALUES (':common_name', ':habitat', ':food', ':conservation_id', ':backyard_tips')");
-
+			$sql = "INSERT INTO birds (common_name, habitat, food, conservation_id, backyard_tips) VALUES ( :common_name, :habitat, :food, :conservation_id, :backyard_tips)";
+			
+			$stmt = self::$database->prepare($sql);
 			
 			$bound_common_name = $this->common_name;
 			$bound_habitat = $this->habitat;
@@ -91,14 +92,14 @@
 			$bound_conservation_id = $this->conservation_id;
 			$bound_backyard_tips = $this->backyard_tips;
 			
-			$sql->bindParam(':common_name',$bound_common_name);
-			$sql->bindParam(':habitat',$bound_habitat);
-			$sql->bindParam(':food',$bound_food);
-			$sql->bindParam(':conservation_id',$bound_conservation_id);
-			$sql->bindParam(':backyard_tips',$bound_backyard_tips);
+			$stmt->bindParam(':common_name', $bound_common_name);
+			$stmt->bindParam(':habitat', $bound_habitat);
+			$stmt->bindParam(':food', $bound_food);
+			$stmt->bindParam(':conservation_id', $bound_conservation_id);
+			$stmt->bindParam(':backyard_tips', $bound_backyard_tips);
 			
 			
-			$result = self::$database->exec($sql);
+			$result = $stmt->execute();
 			
 			if( $result ) {
 				$this->id = self::$database->lastInsertID();
