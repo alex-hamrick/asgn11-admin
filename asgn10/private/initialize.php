@@ -1,5 +1,5 @@
 <?php
-  ob_start(); // turn on output buffering
+	ob_start(); // turn on output buffering
 
   // session_start(); // turn on sessions if needed
 
@@ -29,10 +29,12 @@
   require_once('validation_functions.php');
   
   include('classes/databaseobject.class.php');
-  include('classes/bird.class.php');
-  include('classes/admin.class.php');
+	include('classes/bird.class.php');
   include('classes/parsecsv.class.php');
+	include('classes/session.class.php');
+	include('classes/admin.class.php');
   // Autoload class definitions
+
 
   function my_autoload($class) {
     if ( preg_match('/\A\w+\Z/', $class) ) {
@@ -43,6 +45,7 @@
   spl_autoload_register('my_autoload');
 
   $database = db_connect();
-  DatabaseObject::set_database($database);
+  Bird::set_database($database);
 
+ $session = new Session;
 ?>

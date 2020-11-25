@@ -14,9 +14,9 @@ if($bird == false) {
 
 if(is_post_request()) {
 
-  $result = $bird->delete();
+  // Delete bicycle
 
-  $_SESSION['message'] = 'The bird was deleted successfully.';
+  $_SESSION['message'] = 'The bicycle was deleted successfully.';
   redirect_to(url_for('/bird-staff/views/index.php'));
 
 } else {
@@ -35,7 +35,7 @@ if(is_post_request()) {
   <div class="bicycle delete">
     <h1>Delete Bird</h1>
     <p>Are you sure you want to delete this bird?</p>
-    <p class="item"><?php echo h($bird->common_name); ?></p>
+    <p class="item"><?php echo h('Bird Name'); ?></p>
 
     <form action="<?php echo url_for('/bird-staff/views/delete.php?id=' . h(u($id))); ?>" method="post">
       <div id="operations">
